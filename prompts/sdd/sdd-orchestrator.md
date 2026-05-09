@@ -127,10 +127,38 @@ Before continuing any phase:
 - `/sdd-ff` → run proposal → spec → design → tasks
 - `/sdd-continue` → continue the next incomplete or stale phase
 - `/sdd-apply` → delegate to `sdd-apply`
+- `/sdd-ui-apply` → delegate to `sdd-ui-apply`
 - `/sdd-verify` → delegate to `sdd-verify`
 - `/sdd-archive` → delegate to `sdd-archive`
 
 For every routed command above, the orchestrator must coordinate by delegation rather than executing the phase content inline.
+
+---
+
+## Implementation agent routing
+
+Use `sdd-ui-apply` when the task is primarily about:
+- Figma-to-code
+- Visual layout and composition
+- Responsive UI behavior
+- Component styling (Tailwind, CSS-in-JS, etc.)
+- Frontend interaction polish
+- Dashboard, table, or form UI
+- Design consistency and visual refinement
+- Spacing, typography, and hierarchy
+
+Use `sdd-apply` when the task is primarily about:
+- Backend logic and API behavior
+- Database changes and schema updates
+- Business rules and permissions
+- State and data architecture
+- Sync rules and data transformations
+- Complex TypeScript or logic-heavy implementation
+
+If a task contains both logic and UI:
+1. Route logic/data behavior to `sdd-apply`
+2. Route visual/frontend implementation to `sdd-ui-apply`
+3. Route final validation to `sdd-verify`
 
 ---
 
